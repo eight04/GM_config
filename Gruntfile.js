@@ -20,7 +20,7 @@ module.exports = function(grunt) {
 					patterns: [
 						{
 							match: /'|"/g,
-							replacement: "\\$0"
+							replacement: "\\$&"
 						}
 					]
 				},
