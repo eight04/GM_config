@@ -1,8 +1,7 @@
 @import "bower_components/end2end/src/vars.less";
 @import "bower_components/end2end/src/mixins.less";
-@import (reference) "bower_components/end2end/src/base.less";
 @import "bower_components/end2end/src/components/form.less";
-@import (reference) "bower_components/end2end/src/theme.less";
+@import "bower_components/end2end/src/components/button.less";
 
 .config-dialog {
 	position: fixed;
@@ -45,8 +44,4 @@
 	+ .btn-default {
 		margin-left: 15px;
 	}
-}
-.form-control {
-	&:extend(.form-control all, input);
-	&:extend(input);
 }
