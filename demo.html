@@ -4,6 +4,12 @@
 	<meta charset="UTF-8">
 	<title>Scroll like Opera</title>
 	<script src="GM_config.js"></script>
+	<script src="https://code.jquery.com/jquery-1.11.2.js"></script>
+</head>
+<body class="container-sm">
+	<h2>GM_config <small>Demo Page</small></h2>
+	<button class="btn-default" onclick="GM_config.open()">Config</button>
+	<pre>config = <span id="output"></span></pre>
 	<script>
 		GM_config.init(
 			"Scroll like Opera",
@@ -25,20 +31,22 @@
 				},
 				scrollDelay: {
 					label: "Smooth scrolling delay.",
-					type: "text",
+					type: "number",
 					default: 400
 				},
 				scrollOffset: {
 					label: "Scrolling offset.",
-					type: "text",
+					type: "number",
 					default: 120
 				}
 			}
 		);
+		log();
+		GM_config.onclose = log;
+
+		function log(){
+			$("#output").text(JSON.stringify(GM_config.get(), null, "\t"));
+		}
 	</script>
-</head>
-<body class="container-sm">
-	<h2>GM_config <small>Demo Page</small></h2>
-	<button class="btn-default" onclick="GM_config.open()">Config</button>
-</body>
+	</body>
 </html>

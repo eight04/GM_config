@@ -132,6 +132,10 @@ var GM_config = function(){
 		if (saveFlag) {
 			save();
 		}
+
+		if (GM_config.onclose) {
+			GM_config.onclose(saveFlag);
+		}
 	}
 
 	function open() {
@@ -160,7 +164,6 @@ var GM_config = function(){
 						];
 						break;
 					case "checkbox":
-						console.log(s.value);
 						s.element.checked = s.value;
 						group = element("div", {"class": "checkbox"}, [
 							s.element,
@@ -197,7 +200,7 @@ var GM_config = function(){
 		}
 	}
 
-	return {
+	GM_config = {
 		init: function(title, settings) {
 			config.title = title;
 			config.settings = settings;
@@ -219,4 +222,6 @@ var GM_config = function(){
 			}
 		}
 	};
+
+	return GM_config;
 }();
