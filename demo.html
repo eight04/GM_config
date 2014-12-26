@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en" ng-app>
+<head>
+	<meta charset="UTF-8">
+	<title>Scroll like Opera</title>
+	<script src="GM_config.js"></script>
+	<script>
+		GM_config.init(
+			"Scroll like Opera",
+			{
+				useWhenOnScrollbar: {
+					label: "Scroll horizontally if cursor hover on horizontal scrollbar.",
+					type: "checkbox",
+					default: true
+				},
+				useWhenOneScrollbar: {
+					label: "Scroll horizontally if there is only horizontal scrollbar presented.",
+					type: "checkbox",
+					default: true
+				},
+				useAlways: {
+					label: "Always use script's scrolling handler. Enable this if you want to use the script's smooth scrolling on chrome.",
+					type: "checkbox",
+					default: false
+				},
+				scrollDelay: {
+					label: "Smooth scrolling delay.",
+					type: "text",
+					default: 400
+				},
+				scrollOffset: {
+					label: "Scrolling offset.",
+					type: "text",
+					default: 120
+				}
+			}
+		);
+	</script>
+</head>
+<body class="container-sm">
+	<h2>GM_config <small>Demo Page</small></h2>
+	<button class="btn-default" onclick="GM_config.open()">Config</button>
+</body>
+</html>

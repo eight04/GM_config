@@ -53,7 +53,7 @@ module.exports = function(grunt) {
 		less: {
 			end2end: {
 				files: {
-					"end2end.less": "end2end.css"
+					"end2end.css": "end2end.less"
 				}
 			},
 			css: {
@@ -72,5 +72,6 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-less');
 
 	// Tasks
-	grunt.registerTask('default', ["less", "cssmin", 'replace', 'clean']);
+	grunt.registerTask('default', ["less", "cssmin", 'replace']);
+//	grunt.registerTask('default', ["less", "cssmin", 'replace', 'clean']);
 };
