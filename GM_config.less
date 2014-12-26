@@ -1,8 +1,3 @@
-@import "bower_components/end2end/src/vars.less";
-@import "bower_components/end2end/src/mixins.less";
-@import "bower_components/end2end/src/components/form.less";
-@import "bower_components/end2end/src/components/button.less";
-
 .config-dialog {
 	position: fixed;
 	top: 0;
@@ -24,6 +19,14 @@
 	* {
 		box-sizing: border-box;
 	}
+	
+	.btn-default {
+		+ .btn-default {
+			margin-left: 15px;
+		}
+	}
+
+	@import (css) "end2end.css";
 }
 .config-dialog-content {
 	text-align: left;
@@ -37,11 +40,4 @@
 .config-dialog-head {
 	font-weight: bold;
 	font-size: 120%;
-}
-.btn-default {
-	&:extend(.btn-default all);
-	&:extend(button);
-	+ .btn-default {
-		margin-left: 15px;
-	}
 }

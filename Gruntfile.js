@@ -42,7 +42,7 @@ module.exports = function(grunt) {
 				}
 			}
 		},
-		clean: ["style.css"],
+		clean: ["*.css"],
 		cssmin: {
 			css: {
 				files: {
@@ -51,6 +51,11 @@ module.exports = function(grunt) {
 			}
 		},
 		less: {
+			end2end: {
+				files: {
+					"end2end.less": "end2end.css"
+				}
+			},
 			css: {
 				files: {
 					"style.css": "GM_config.less"
