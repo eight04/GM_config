@@ -119,13 +119,6 @@ button::-moz-focus-inner {
   border: 0;
   padding: 0;
 }
-label {
-  vertical-align: middle;
-  line-height: 1.55;
-}
-legend {
-  line-height: 1.55;
-}
 img {
   vertical-align: text-bottom;
   max-width: 100%;
@@ -156,10 +149,19 @@ hr {
 ::-moz-selection {
   background-color: rgba(255, 169, 46, 0.4);
 }
-fieldset {
+fieldset,
+legend {
   border: 0 none;
   margin: 0;
   padding: 0;
+}
+input[type="checkbox"],
+input[type="radio"] {
+  padding: 0;
+}
+.row-gap > fieldset > legend {
+  position: relative;
+  top: 15px;
 }
 input.ng-invalid,
 textarea.ng-invalid,
@@ -171,6 +173,14 @@ input.ng-invalid:focus,
 textarea.ng-invalid:focus,
 select.ng-invalid:focus {
   border-color: #cb1b1b;
+}
+input[type="checkbox"].ng-invalid,
+input[type="radio"].ng-invalid,
+input[type="checkbox"].ng-invalid:hover,
+input[type="radio"].ng-invalid:hover,
+input[type="checkbox"].ng-invalid:focus,
+input[type="radio"].ng-invalid:focus {
+  box-shadow: 0 0 0 1px #cb1b1b;
 }
 ::-webkit-input-placeholder {
   color: #c9c9c9;
@@ -192,6 +202,10 @@ select.ng-invalid:focus {
 }
 .row > .form-group {
   margin: 0;
+}
+label,
+legend {
+  vertical-align: bottom;
 }
 label + .form-control,
 legend + .form-control,

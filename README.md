@@ -18,6 +18,8 @@ Todos
 
 Changelog
 ---------
+* 0.2.1 (Dec 29, 2014)
+	- Add z-index to configi-dialog.
 * 0.2.0 (Dec 29, 2014)
 	- Return config object after init.
 * 0.1.0 (Dec 29, 2014)

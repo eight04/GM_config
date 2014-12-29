@@ -3,7 +3,7 @@
 // @description	A library to help you set up configure in greasemonkey script.
 // @namespace   eight04.blogspot.com
 // @include     http*
-// @version     0.2.0
+// @version     0.2.1
 // @grant       GM_setValue
 // @grant		GM_getValue
 // @license		MIT
