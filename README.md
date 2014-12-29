@@ -4,13 +4,19 @@ A library to help you set up configure in greasemonkey script.
 
 Features
 --------
+* Simple API to init config.
+* Can save boolean(checkbox), integer(number), and text.
 
 Test page
 ---------
+https://rawgit.com/eight04/GM_config/master/demo.html
 
 Todos
 -----
-* Complete this readme.
+* It may conflict with some CSS rule of original webpage. Use iframe instead?
+* Remove localStorage compatibility?
 
 Changelog
 ---------
+* 0.1.0 (Dec 29, 2014)
+	- First release.

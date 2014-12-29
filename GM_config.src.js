@@ -1,3 +1,14 @@
+// ==UserScript==
+// @name        GM_config (eight's version)
+// @description	A library to help you set up configure in greasemonkey script.
+// @namespace   eight04.blogspot.com
+// @include     http*
+// @version     0.1.0
+// @grant       GM_setValue
+// @grant		GM_getValue
+// @license		MIT
+// ==/UserScript==
+
 var GM_config = function(){
 
 	"use strict";
