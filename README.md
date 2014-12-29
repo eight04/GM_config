@@ -18,6 +18,8 @@ Todos
 
 Changelog
 ---------
+* 0.2.2 (Dec 29, 2014)
+	- Fix bugs in setValue.
 * 0.2.1 (Dec 29, 2014)
 	- Add z-index to configi-dialog.
 * 0.2.0 (Dec 29, 2014)

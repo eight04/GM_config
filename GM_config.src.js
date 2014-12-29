@@ -3,7 +3,7 @@
 // @description	A library to help you set up configure in greasemonkey script.
 // @namespace   eight04.blogspot.com
 // @include     http*
-// @version     0.2.1
+// @version     0.2.2
 // @grant       GM_setValue
 // @grant		GM_getValue
 // @license		MIT
@@ -48,20 +48,17 @@ var GM_config = function(){
 		var value;
 
 		if (typeof GM_getValue != "undefined") {
-			value = GM_getValue(key);
+			return GM_getValue(key);
 		} else {
 			value = localStorage.getItem(key);
-		}
-		if (value == null) {
-			return null;
-		}
-		switch(type) {
-			case "number":
-				return +value;
-			case "checkbox":
-				return value == "true";
-			default:
-				return value;
+			switch(type) {
+				case "number":
+					return +value;
+				case "checkbox":
+					return value == "true";
+				default:
+					return value;
+			}
 		}
 	}
 
