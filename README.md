@@ -18,5 +18,7 @@ Todos
 
 Changelog
 ---------
+* 0.2.0 (Dec 29, 2014)
+	- Return config object after init.
 * 0.1.0 (Dec 29, 2014)
 	- First release.
