@@ -7,14 +7,51 @@ Features
 * Simple API to init config.
 * Can save boolean(checkbox), integer(number), and text.
 
-Test page
+Test Psage
 ---------
 https://rawgit.com/eight04/GM_config/master/demo.html
 
+Usage Examples
+--------------
+```
+GM_config.init(
+	"Title",
+	{
+		"optionName": {
+			"label": "An option",
+			"type": "checkbox",		// 'checkbox', 'number', 'text'
+			"default": true
+		},
+		"option2Name": {
+			"label": "Another option",
+			"type": "number",
+			"default": 100
+		}
+	}
+);
+
+GM_config.onclose = function(){
+	// callback function...
+};
+
+GM_config.open();	// Open config dialog
+
+GM_config.get();
+/*
+-> 
+{
+	optionName: true,
+	option2Name: 100
+}
+*/
+
+```
+
 Todos
 -----
-* It may conflict with some CSS rule of original webpage. Use iframe instead?
+* It may conflict with some CSS rules in original webpage. Use iframe instead?
 * Remove localStorage compatibility?
+* Add ability to configure settings by domains.
 
 Changelog
 ---------
