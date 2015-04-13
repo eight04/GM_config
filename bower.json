@@ -1,29 +1,31 @@
 {
-	"name": "GM_config",
-	"version": "0.1.0",
-	"homepage": "",
-	"authors": [
-		"eight <eight04@gmail.com>"
-	],
-	"description": "A library to help you set up configure in greasemonkey script.",
-	"main": [
-		"GM_config.js"
-	],
-	"moduleType": [
-		"globals"
-	],
-	"keywords": [
-		"greasemonkey",
-		"userscript"
-	],
-	"license": "MIT",
-	"ignore": [
-		"**/.*",
-		"node_modules",
-		"bower_components",
-		"test",
-		"build"
-	],
-	"devDependencies": {},
-	"dependencies": {}
+  "name": "GM_config",
+  "version": "0.1.0",
+  "homepage": "",
+  "authors": [
+    "eight <eight04@gmail.com>"
+  ],
+  "description": "A library to help you set up configure in greasemonkey script.",
+  "main": [
+    "GM_config.js"
+  ],
+  "moduleType": [
+    "globals"
+  ],
+  "keywords": [
+    "greasemonkey",
+    "userscript"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "build"
+  ],
+  "devDependencies": {
+    "end2end": "master"
+  },
+  "dependencies": {}
 }

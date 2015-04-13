@@ -16,6 +16,11 @@ a:hover {
 a:active {
   color: #0a53f8;
 }
+.link {
+  color: #707070;
+  text-decoration: underline;
+  cursor: pointer;
+}
 body {
   font-size: 16px;
   font-family: "Helvetica Neue", Helvetica, Arial, "微軟正黑體", sans-serif;
@@ -42,6 +47,15 @@ h5 small,
 h6 small {
   font-size: 70%;
   color: #8a8a8a;
+}
+h1 .head-reset,
+h2 .head-reset,
+h3 .head-reset,
+h4 .head-reset,
+h5 .head-reset,
+h6 .head-reset {
+  font-size: 16px;
+  font-weight: normal;
 }
 h1 {
   font-size: 260%;
@@ -214,7 +228,15 @@ legend + .input-group,
 label + .radio,
 legend + .radio,
 label + .checkbox,
-legend + .checkbox {
+legend + .checkbox,
+label .form-control,
+legend .form-control,
+label .input-group,
+legend .input-group,
+label .radio,
+legend .radio,
+label .checkbox,
+legend .checkbox {
   margin-top: 0.3em;
 }
 .form-control {
@@ -376,6 +398,7 @@ legend + .checkbox {
   width: 100%;
 }
 .btn-group {
+  display: block;
   display: inline-block;
   border: 1px solid #808080;
   border-radius: 0.1875em;

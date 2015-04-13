@@ -3,7 +3,7 @@
 // @description	A library to help you set up configure in greasemonkey script.
 // @namespace   eight04.blogspot.com
 // @include     http*
-// @version     0.2.2
+// @version     0.3.0
 // @grant       GM_setValue
 // @grant		GM_getValue
 // @license		MIT
@@ -146,12 +146,15 @@ var GM_config = function(){
 		}
 	}
 
+	function getCssString() {
+		return "@@CSS";
+	}
+
 	function open() {
 		var key, s, btn, group;
 
 		if (!css) {
-			var cssString = "@@CSS";
-			css = element("style", {"id": "config-css"}, cssString);
+			css = element("style", {"id": "config-css"}, getCssString());
 			document.head.appendChild(css);
 		}
 
@@ -160,31 +163,41 @@ var GM_config = function(){
 			for (key in config.settings) {
 				s = config.settings[key];
 
-				s.element = element("input", {"id": key, "type": s.type});
+				if (s.type == "textarea") {
+					s.element = element("textarea", {"id": key});
+					s.element.classList.add("form-control");
+					s.element.value = s.value;
+					group = [
+						element("label", {"for": key}, s.label),
+						s.element
+					];
+				} else {
+					s.element = element("input", {"id": key, "type": s.type});
 
-				switch (s.type) {
-					case "number":
-						s.element.classList.add("form-control");
-						s.element.value = s.value.toString();
-						group = [
-							element("label", {"for": key}, s.label),
-							s.element
-						];
-						break;
-					case "checkbox":
-						s.element.checked = s.value;
-						group = element("div", {"class": "checkbox"}, [
-							s.element,
-							element("label", {"for": key}, s.label)
-						]);
-						break;
-					default:
-						s.element.value = s.value;
-						s.element.classList.add("form-control");
-						group = [
-							element("label", {"for": key}, s.label),
-							s.element
-						];
+					switch (s.type) {
+						case "number":
+							s.element.classList.add("form-control");
+							s.element.value = s.value.toString();
+							group = [
+								element("label", {"for": key}, s.label),
+								s.element
+							];
+							break;
+						case "checkbox":
+							s.element.checked = s.value;
+							group = element("div", {"class": "checkbox"}, [
+								s.element,
+								element("label", {"for": key}, s.label)
+							]);
+							break;
+						default:
+							s.element.value = s.value;
+							s.element.classList.add("form-control");
+							group = [
+								element("label", {"for": key}, s.label),
+								s.element
+							];
+					}
 				}
 
 				dialog.body.appendChild(

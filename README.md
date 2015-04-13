@@ -38,13 +38,22 @@ GM_config.open();	// Open config dialog
 
 GM_config.get();
 /*
--> 
+->
 {
 	optionName: true,
 	option2Name: 100
 }
 */
 
+```
+
+Build
+-----
+Using NodeJS, Bower, Grunt:
+```
+npm install
+bower install
+grunt
 ```
 
 Todos
@@ -55,6 +64,8 @@ Todos
 
 Changelog
 ---------
+* 0.3.0 (Apr 13, 2015)
+	- Support textarea.
 * 0.2.2 (Dec 29, 2014)
 	- Fix bugs in setValue.
 * 0.2.1 (Dec 29, 2014)
