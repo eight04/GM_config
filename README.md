@@ -19,7 +19,7 @@ GM_config.init(
 	{
 		"optionName": {
 			"label": "An option",
-			"type": "checkbox",		// 'checkbox', 'number', 'text'
+			"type": "checkbox",		// 'checkbox', 'number', 'text', 'textarea'
 			"default": true
 		},
 		"option2Name": {
@@ -64,6 +64,8 @@ Todos
 
 Changelog
 ---------
+* 0.3.1 (Apr 16, 2015)
+	- Now you can pass a reference object to `GM_config.get()`.
 * 0.3.0 (Apr 13, 2015)
 	- Support textarea.
 * 0.2.2 (Dec 29, 2014)

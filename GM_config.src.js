@@ -233,10 +233,14 @@ var GM_config = function(){
 		get: function(key) {
 			var con;
 
-			if (key) {
+			if (typeof key == "string") {
 				return config.settings[key].value;
 			} else {
-				con = {};
+				if (typeof key == "object") {
+					con = key;
+				} else {
+					con = {};
+				}
 				for (key in config.settings) {
 					con[key] = config.settings[key].value;
 				}
