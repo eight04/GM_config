@@ -3,10 +3,10 @@
 // @description	A library to help you set up configure in greasemonkey script.
 // @namespace   eight04.blogspot.com
 // @include     http*
-// @version     0.3.1
+// @version     1.0.0
 // @grant       GM_setValue
 // @grant		GM_getValue
-// @license		MIT
+// @license		LGPL version 3 or any later version; http://www.gnu.org/copyleft/lgpl.html
 // ==/UserScript==
 
 var GM_config = function(){

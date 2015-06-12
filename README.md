@@ -2,12 +2,17 @@ GM_config
 =========
 A library to help you set up configure in greasemonkey script.
 
+This project is a rewrite of [sizzlemctwizzle/GM_config][1] and use the interface similar to [GM_config (JoeSimmons)][2].
+
+[1]: https://github.com/sizzlemctwizzle/GM_config
+[2]: https://greasyfork.org/en/scripts/1884-gm-config
+
 Features
 --------
 * Simple API to init config.
 * Can save boolean(checkbox), integer(number), and text.
 
-Test Psage
+Test Page
 ---------
 https://rawgit.com/eight04/GM_config/master/demo.html
 
@@ -62,8 +67,14 @@ Todos
 * Remove localStorage compatibility?
 * Add ability to configure settings by domains.
 
+License
+-------
+LGPL version 3 or any later version; http://www.gnu.org/copyleft/lgpl.html
+
 Changelog
 ---------
+* 1.0.0 (Jun 13, 2015)
+	- Fix license issue.
 * 0.3.1 (Apr 16, 2015)
 	- Now you can pass a reference object to `GM_config.get()`.
 * 0.3.0 (Apr 13, 2015)
