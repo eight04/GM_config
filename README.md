@@ -77,6 +77,8 @@ LGPL version 3 or any later version; http://www.gnu.org/copyleft/lgpl.html
 
 Changelog
 ---------
+* 1.2.0 (Jun 15, 2015)
+	- Add transition animation.
 * 1.1.1 (Jun 15, 2015)
 	- Drop `document.open, document.close`.
 * 1.1.0 (Jun 15, 2015)
