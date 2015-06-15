@@ -13,12 +13,18 @@
 	background: rgba(0, 0, 0, 0.5);
 	overflow: auto;
 	z-index: 99999;
+	opacity: 0;
+	transition: opacity 0.2s linear;
 
 	&:before {
 		content: "";
 		display: inline-block;
 		height: 100%;
 		vertical-align: middle;
+	}
+
+	&-ani {
+		opacity: 1;
 	}
 }
 
@@ -31,4 +37,11 @@
 	margin: 30px 0;
 	box-shadow: 0 0 30px black;
 	border-width: 0;
+	transition: transform 0.2s linear;
+
+	transform: translateY(-20px);
+
+	.config-dialog-ani & {
+		transform: none;
+	}
 }

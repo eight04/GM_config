@@ -77,8 +77,11 @@ var GM_config = function(){
 
 	function destroyDialog() {
 		document.body.classList.remove("config-dialog-open");
-		dialog.element.parentNode.removeChild(dialog.element);
-		dialog = null;
+		dialog.element.classList.remove("config-dialog-ani");
+		setTimeout(function() {
+			dialog.element.parentNode.removeChild(dialog.element);
+			dialog = null;
+		}, 220);
 	}
 
 	function createDialog(title) {
@@ -115,6 +118,8 @@ var GM_config = function(){
 			iframe.style.width = w + "px";
 			iframe.style.height = h + "px";
 			modal.focus();
+
+			modal.classList.add("config-dialog-ani");
 		}
 
 		return {

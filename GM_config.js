@@ -77,8 +77,11 @@ var GM_config = function(){
 
 	function destroyDialog() {
 		document.body.classList.remove("config-dialog-open");
-		dialog.element.parentNode.removeChild(dialog.element);
-		dialog = null;
+		dialog.element.classList.remove("config-dialog-ani");
+		setTimeout(function() {
+			dialog.element.parentNode.removeChild(dialog.element);
+			dialog = null;
+		}, 220);
 	}
 
 	function createDialog(title) {
@@ -115,6 +118,8 @@ var GM_config = function(){
 			iframe.style.width = w + "px";
 			iframe.style.height = h + "px";
 			modal.focus();
+
+			modal.classList.add("config-dialog-ani");
 		}
 
 		return {
@@ -164,7 +169,7 @@ var GM_config = function(){
 	}
 
 	function getCssString() {
-		return ".config-dialog-open{overflow:hidden}.config-dialog{position:fixed;top:0;left:0;right:0;bottom:0;vertical-align:middle;text-align:center;background:rgba(0,0,0,.5);overflow:auto;z-index:99999}.config-dialog:before{content:\"\";display:inline-block;height:100%;vertical-align:middle}.config-dialog-content{text-align:left;display:inline-block;width:90%;vertical-align:middle;background:#fff;margin:30px 0;box-shadow:0 0 30px #000;border-width:0}";
+		return ".config-dialog-open{overflow:hidden}.config-dialog{position:fixed;top:0;left:0;right:0;bottom:0;vertical-align:middle;text-align:center;background:rgba(0,0,0,.5);overflow:auto;z-index:99999;opacity:0;transition:opacity .2s linear}.config-dialog:before{content:\"\";display:inline-block;height:100%;vertical-align:middle}.config-dialog-ani{opacity:1}.config-dialog-content{text-align:left;display:inline-block;width:90%;vertical-align:middle;background:#fff;margin:30px 0;box-shadow:0 0 30px #000;border-width:0;transition:transform .2s linear;transform:translateY(-20px)}.config-dialog-ani .config-dialog-content{transform:none}";
 	}
 
 	function open() {
