@@ -16,7 +16,7 @@ var GM_config = function(){
 	var config = {
 		title: null,
 		settings: null
-	}, dialog, css;
+	}, dialog, css, GM_config;
 
 	function element(tag, attr, children) {
 		var e, key, i;
