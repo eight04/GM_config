@@ -44,30 +44,12 @@ var GM_config = function(){
 		return e;
 	}
 
-	function getValue(key, type) {
-		var value;
-
-		if (typeof GM_getValue != "undefined") {
-			return GM_getValue(key);
-		} else {
-			value = localStorage.getItem(key);
-			switch(type) {
-				case "number":
-					return +value;
-				case "checkbox":
-					return value == "true";
-				default:
-					return value;
-			}
-		}
+	function getValue(key) {
+		return GM_getValue(key);
 	}
 
 	function setValue(key, value) {
-		if (typeof GM_setValue != "undefined") {
-			GM_setValue(key, value);
-		} else {
-			localStorage.setItem(key, value.toString());
-		}
+		GM_setValue(key, value);
 	}
 
 	function read() {
