@@ -25,7 +25,8 @@ module.exports = function(grunt) {
 					]
 				},
 				files: {
-					"style.css": "style.css"
+					"style.css": "style.css",
+					"end2end.css": "end2end.css"
 				}
 			},
 			includeCss: {
@@ -34,6 +35,10 @@ module.exports = function(grunt) {
 						{
 							match: "CSS",
 							replacement: "<%= grunt.file.read('style.css') %>"
+						},
+						{
+							match: "CONFIGCSS",
+							replacement: "<%= grunt.file.read('end2end.css') %>"
 						}
 					]
 				},
@@ -46,18 +51,15 @@ module.exports = function(grunt) {
 		cssmin: {
 			css: {
 				files: {
-					"style.css": "style.css"
+					"style.css": "style.css",
+					"end2end.css": "end2end.css"
 				}
 			}
 		},
 		less: {
-			end2end: {
-				files: {
-					"end2end.css": "end2end.less"
-				}
-			},
 			css: {
 				files: {
+					"end2end.css": "end2end.less",
 					"style.css": "GM_config.less"
 				}
 			}
@@ -72,6 +74,5 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-less');
 
 	// Tasks
-	grunt.registerTask('default', ["less", "cssmin", 'replace']);
-//	grunt.registerTask('default', ["less", "cssmin", 'replace', 'clean']);
+	grunt.registerTask('default', ["less", "cssmin", 'replace', 'clean']);
 };

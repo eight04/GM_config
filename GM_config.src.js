@@ -75,21 +75,44 @@ var GM_config = function(){
 		}
 	}
 
-	function createDialog(title) {
-		var dialog;
+	function destroyDialog() {
+		document.body.classList.remove("config-dialog-open");
+		dialog.element.parentNode.removeChild(dialog.element);
+		dialog = null;
+	}
 
-		dialog = element("div", {"class": "config-dialog"}, [
-			element("div", {"class": "config-dialog-content"}, [
-				element("div", {"class": "config-dialog-head"}, title),
-				element("div", {"class": "config-dialog-body"}),
-				element("div", {"class": "config-dialog-footer"})
-			])
-		]);
+	function createDialog(title) {
+		document.body.classList.add("config-dialog-open");
+
+		var iframe = element("iframe", {"class": "config-dialog-content"});
+		var modal = element("div", {"class": "config-dialog"}, iframe);
+
+		var head = element("div", {"class": "config-dialog-head"}, title);
+		var body = element("div", {"class": "config-dialog-body"});
+		var footer = element("div", {"class": "config-dialog-footer"});
+
+		var style = element("style", null, getConfigCssString());
+
+		document.body.appendChild(modal);
+
+		var iframeDoc = iframe.contentDocument;
+
+		iframeDoc.head.appendChild(style);
+		iframeDoc.body.appendChild(head);
+		iframeDoc.body.appendChild(body);
+		iframeDoc.body.appendChild(footer);
 
 		return {
-			element: dialog,
-			body: dialog.querySelector(".config-dialog-body"),
-			footer: dialog.querySelector(".config-dialog-footer")
+			element: modal,
+			body: body,
+			footer: footer,
+			render: function() {
+				var w = iframeDoc.body.scrollWidth,
+					h = iframeDoc.body.scrollHeight;
+
+				iframe.style.height = w + "px";
+				iframe.style.width = h + "px";
+			}
 		};
 	}
 
@@ -99,8 +122,7 @@ var GM_config = function(){
 		if (!dialog) {
 			return;
 		}
-		dialog.element.parentNode.removeChild(dialog.element);
-		dialog = null;
+		destroyDialog();
 
 		for (key in config.settings) {
 			s = config.settings[key];
@@ -128,6 +150,10 @@ var GM_config = function(){
 		}
 	}
 
+	function getConfigCssString() {
+		return "@@CONFIGCSS";
+	}
+
 	function getCssString() {
 		return "@@CSS";
 	}
@@ -142,6 +168,7 @@ var GM_config = function(){
 
 		if (!dialog) {
 			dialog = createDialog(config.title);
+
 			for (key in config.settings) {
 				s = config.settings[key];
 
@@ -199,7 +226,7 @@ var GM_config = function(){
 			};
 			dialog.footer.appendChild(btn);
 
-			document.body.appendChild(dialog.element);
+			dialog.render();
 		}
 	}
 

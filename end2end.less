@@ -5,3 +5,18 @@
 @import "bower_components/end2end/src/base.less";
 @import "bower_components/end2end/src/components/form.less";
 @import "bower_components/end2end/src/components/button.less";
+
+body {
+	padding: 30px;
+}
+
+.config-dialog-head {
+	font-weight: bold;
+	font-size: 120%;
+}
+
+.btn-default {
+	+ .btn-default {
+		margin-left: 15px;
+	}
+}
