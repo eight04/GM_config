@@ -95,28 +95,33 @@ var GM_config = function(){
 
 		document.body.appendChild(modal);
 
-		var iframeDoc = iframe.contentDocument;
+		function manipulateIframe() {
+			var doc = iframe.contentDocument;
+			doc.head.appendChild(style);
+			doc.body.appendChild(head);
+			doc.body.appendChild(body);
+			doc.body.appendChild(footer);
+		}
 
-		iframeDoc.open();
-		iframeDoc.close();
+		iframe.contentWindow.onload = manipulateIframe;
 
-		iframeDoc.head.appendChild(style);
-		iframeDoc.body.appendChild(head);
-		iframeDoc.body.appendChild(body);
-		iframeDoc.body.appendChild(footer);
+		manipulateIframe();
+
+		function render() {
+			var body = iframe.contentDocument.body,
+				w = body.offsetWidth,
+				h = body.scrollHeight;
+
+			iframe.style.width = w + "px";
+			iframe.style.height = h + "px";
+			modal.focus();
+		}
 
 		return {
 			element: modal,
 			body: body,
 			footer: footer,
-			render: function() {
-				var w = iframeDoc.body.offsetWidth,
-					h = iframeDoc.body.scrollHeight;
-
-				iframe.style.width = w + "px";
-				iframe.style.height = h + "px";
-				modal.focus();
-			}
+			render: render
 		};
 	}
 

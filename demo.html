@@ -12,6 +12,15 @@
 	<h3>GM_config.get()</h3>
 	<pre id="output"></pre>
 	<script>
+		var benchmark = function(){
+			var time = Date.now();
+			return function(title) {
+				var time2 = Date.now()
+				console.log("+" + (time2 - time), title);
+				time = time2;
+			}
+		}();
+
 		function GM_getValue() {}
 
 		function GM_setValue() {}
