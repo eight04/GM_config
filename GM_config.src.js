@@ -85,7 +85,7 @@ var GM_config = function(){
 		document.body.classList.add("config-dialog-open");
 
 		var iframe = element("iframe", {"class": "config-dialog-content"});
-		var modal = element("div", {"class": "config-dialog"}, iframe);
+		var modal = element("div", {"class": "config-dialog", "tabindex": "-1"}, iframe);
 
 		var head = element("div", {"class": "config-dialog-head"}, title);
 		var body = element("div", {"class": "config-dialog-body"});
@@ -97,6 +97,9 @@ var GM_config = function(){
 
 		var iframeDoc = iframe.contentDocument;
 
+		iframeDoc.open();
+		iframeDoc.close();
+
 		iframeDoc.head.appendChild(style);
 		iframeDoc.body.appendChild(head);
 		iframeDoc.body.appendChild(body);
@@ -107,11 +110,12 @@ var GM_config = function(){
 			body: body,
 			footer: footer,
 			render: function() {
-				var w = iframeDoc.body.scrollWidth,
+				var w = iframeDoc.body.offsetWidth,
 					h = iframeDoc.body.scrollHeight;
 
-				iframe.style.height = w + "px";
-				iframe.style.width = h + "px";
+				iframe.style.width = w + "px";
+				iframe.style.height = h + "px";
+				modal.focus();
 			}
 		};
 	}
