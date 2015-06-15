@@ -10,11 +10,17 @@ This project is a rewrite of [sizzlemctwizzle/GM_config][1] and use the interfac
 Features
 --------
 * Simple API to init config.
-* Can save boolean(checkbox), integer(number), and text.
+* Supported input type:
+	- checkbox (boolean)
+	- number (number)
+	- text (string)
+	- textarea (string)
 
-Test Page
----------
-https://rawgit.com/eight04/GM_config/master/demo.html
+Demo
+----
+Checkout the [demo page][3].
+
+[3]: https://rawgit.com/eight04/GM_config/master/demo.html
 
 Usage Examples
 --------------
@@ -63,8 +69,6 @@ grunt
 
 Todos
 -----
-* It may conflict with some CSS rules in original webpage. Use iframe instead?
-* Remove localStorage compatibility?
 * Add ability to configure settings by domains.
 
 License
@@ -73,6 +77,9 @@ LGPL version 3 or any later version; http://www.gnu.org/copyleft/lgpl.html
 
 Changelog
 ---------
+* 1.1.0 (Jun 15, 2015)
+	- Use iframe.
+	- Remove localStorage fallback.
 * 1.0.0 (Jun 13, 2015)
 	- Fix license issue.
 * 0.3.1 (Apr 16, 2015)
