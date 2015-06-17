@@ -255,8 +255,8 @@ var GM_config = function(){
 			};
 			dialog.footer.appendChild(btn);
 
-			var globalBtn = element("label", {class: "radio", checked: !config.local}, [
-				element("input", {type: "radio", name: "working-scope"}),
+			var globalBtn = element("label", {class: "radio"}, [
+				element("input", {type: "radio", name: "working-scope", checked: !config.local}),
 				"Global setting"
 			]);
 			globalBtn.onchange = function () {
@@ -264,8 +264,8 @@ var GM_config = function(){
 			};
 			dialog.footer.appendChild(globalBtn);
 
-			var localBtn = element("label", {class: "radio", checked: config.local}, [
-				element("input", {type: "radio", name: "working-scope"}),
+			var localBtn = element("label", {class: "radio"}, [
+				element("input", {type: "radio", name: "working-scope", checked: config.local}),
 				"On " + location.hostname
 			]);
 			localBtn.onchange = function() {
