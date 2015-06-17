@@ -113,19 +113,21 @@ var GM_config = function(){
 	}
 
 	function destroyDialog() {
-		document.body.classList.remove("config-dialog-open");
 		dialog.element.classList.remove("config-dialog-ani");
 		setTimeout(function() {
+			document.body.classList.remove("config-dialog-open");
+			document.body.style.paddingRight = "";
 			dialog.element.parentNode.removeChild(dialog.element);
 			dialog = null;
 		}, 220);
 	}
 
 	function createDialog(title) {
-		document.body.classList.add("config-dialog-open");
-
 		var iframe = element("iframe", {"class": "config-dialog-content"});
-		var modal = element("div", {"class": "config-dialog", "tabindex": "-1"}, iframe);
+		var modal = element("div", {"class": "config-dialog", "tabindex": "-1"}, [
+			element("style", null, "body.config-dialog-open { padding-right: " + (window.innerWidth - document.documentElement.offsetWidth) + "px; }"),
+			iframe
+		]);
 
 		var head = element("div", {"class": "config-dialog-head"}, title);
 		var body = element("div", {"class": "config-dialog-body"});
@@ -133,6 +135,7 @@ var GM_config = function(){
 
 		var style = element("style", null, getConfigCssString());
 
+		document.body.classList.add("config-dialog-open");
 		document.body.appendChild(modal);
 
 		function manipulateIframe() {
