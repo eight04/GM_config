@@ -280,9 +280,12 @@ var GM_config = function(){
 	}
 
 	function createFooter(dialog) {
+		var local = config.local;
+
 		dialog.footer.appendChild(frag([
 			element("button", {"class": "btn-default", event: {
 				click: function () {
+					config.local = local;
 					close(true);
 				}
 			}}, "Save"),
@@ -300,18 +303,18 @@ var GM_config = function(){
 			}}, "Default"),
 
 			element("label", {class: "radio"}, [
-				element("input", {type: "radio", name: "working-scope", checked: !config.local, event: {
+				element("input", {type: "radio", name: "working-scope", checked: !local, event: {
 					change: function () {
-						config.local = !this.checked;
+						local = !this.checked;
 					}
 				}}),
 				"Global setting"
 			]),
 
 			element("label", {class: "radio"}, [
-				element("input", {type: "radio", name: "working-scope", checked: config.local, event: {
+				element("input", {type: "radio", name: "working-scope", checked: local, event: {
 					change: function () {
-						config.local = this.checked;
+						local = this.checked;
 					}
 				}}),
 				"On " + location.hostname
