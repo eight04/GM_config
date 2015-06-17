@@ -69,8 +69,6 @@ grunt
 
 Todos
 -----
-* Add ability to configure settings by domains.
-* Add reset to default button.
 * Import, export settings.
 * Fix the flickering on closing dialog animation.
 
