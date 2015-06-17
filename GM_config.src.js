@@ -19,8 +19,26 @@ var GM_config = function(){
 		local: false
 	}, dialog, css, GM_config;
 
+	function addChild(e, children) {
+		if (!children) {
+			return;
+		}
+
+		if (!Array.isArray(children)) {
+			children = [children];
+		}
+
+		var i;
+		for (i = 0; i < children.length; i++) {
+			if (typeof children[i] == "string") {
+				children[i] = document.createTextNode(children[i]);
+			}
+			e.appendChild(children[i]);
+		}
+	}
+
 	function element(tag, attr, children) {
-		var e, key, key2, i;
+		var e, key, key2;
 
 		e = document.createElement(tag);
 
@@ -44,19 +62,15 @@ var GM_config = function(){
 			}
 		}
 
-		if (children) {
-			if (!Array.isArray(children)) {
-				children = [children];
-			}
-			for (i = 0; i < children.length; i++) {
-				if (typeof children[i] == "string") {
-					children[i] = document.createTextNode(children[i]);
-				}
-				e.appendChild(children[i]);
-			}
-		}
+		addChild(e, children);
 
 		return e;
+	}
+
+	function frag(children) {
+		var fragment = document.createDocumentFragment();
+		addChild(fragment, children);
+		return fragment;
 	}
 
 	function getValue(key) {
@@ -76,7 +90,6 @@ var GM_config = function(){
 	function read() {
 		var key, s;
 		config.local = GM_getValue(location.hostname, false);
-		console.log(config.local);
 		for (key in config.settings) {
 			s = config.settings[key];
 			s.value = getValue(key, s.type);
@@ -89,7 +102,6 @@ var GM_config = function(){
 	function save() {
 		var key, s;
 		GM_setValue(location.hostname, config.local);
-		console.log(config.local);
 		for (key in config.settings) {
 			s = config.settings[key];
 			if (s.value == null) {
@@ -176,7 +188,9 @@ var GM_config = function(){
 					default:
 						s.value = s.element.value;
 				}
+				// Create inputs
 			}
+			// Create inputs
 			s.element = null;
 		}
 
@@ -197,9 +211,115 @@ var GM_config = function(){
 		return "@@CSS";
 	}
 
-	function open() {
-		var key, s, btn, group;
+	function setupDialogValue (reset) {
+		var key, setting, value;
 
+		for (key in config.settings) {
+			setting = config.settings[key];
+			value = reset ? setting.default : setting.value;
+
+			switch (setting.type) {
+				case "number":
+					setting.element.value = value.toString();
+					break;
+
+				case "checkbox":
+					setting.element.checked = value;
+					break;
+
+				default:
+					setting.element.value = value;
+					break;
+			}
+		}
+	}
+
+	function createInputs(dialog) {
+		var key, s, group;
+
+		for (key in config.settings) {
+			s = config.settings[key];
+
+			if (s.type == "textarea") {
+				s.element = element("textarea", {"id": key});
+				s.element.classList.add("form-control");
+				group = [
+					element("label", {"for": key}, s.label),
+					s.element
+				];
+			} else {
+				s.element = element("input", {"id": key, "type": s.type});
+
+				switch (s.type) {
+					case "number":
+						s.element.classList.add("form-control");
+						group = [
+							element("label", {"for": key}, s.label),
+							s.element
+						];
+						break;
+					case "checkbox":
+						group = element("div", {"class": "checkbox"}, [
+							s.element,
+							element("label", {"for": key}, s.label)
+						]);
+						break;
+					default:
+						s.element.classList.add("form-control");
+						group = [
+							element("label", {"for": key}, s.label),
+							s.element
+						];
+				}
+			}
+
+			dialog.body.appendChild(
+				element("div", {"class": "form-group"}, group)
+			);
+		}
+	}
+
+	function createFooter(dialog) {
+		dialog.footer.appendChild(frag([
+			element("button", {"class": "btn-default", event: {
+				click: function () {
+					close(true);
+				}
+			}}, "Save"),
+
+			element("button", {"class": "btn-default", event: {
+				click: function() {
+					close();
+				}
+			}}, "Cancel"),
+
+			element("button", {class: "btn-default", event: {
+				click: function() {
+					setupDialogValue(true);
+				}
+			}}, "Default"),
+
+			element("label", {class: "radio"}, [
+				element("input", {type: "radio", name: "working-scope", checked: !config.local, event: {
+					change: function () {
+						config.local = !this.checked;
+					}
+				}}),
+				"Global setting"
+			]),
+
+			element("label", {class: "radio"}, [
+				element("input", {type: "radio", name: "working-scope", checked: config.local, event: {
+					change: function () {
+						config.local = this.checked;
+					}
+				}}),
+				"On " + location.hostname
+			])
+		]));
+	}
+
+	function open() {
 		if (!css) {
 			css = element("style", {"id": "config-css"}, getCssString());
 			document.head.appendChild(css);
@@ -208,83 +328,16 @@ var GM_config = function(){
 		if (!dialog) {
 			dialog = createDialog(config.title);
 
-			for (key in config.settings) {
-				s = config.settings[key];
+			// Create inputs
+			createInputs(dialog);
 
-				if (s.type == "textarea") {
-					s.element = element("textarea", {"id": key});
-					s.element.classList.add("form-control");
-					s.element.value = s.value;
-					group = [
-						element("label", {"for": key}, s.label),
-						s.element
-					];
-				} else {
-					s.element = element("input", {"id": key, "type": s.type});
+			// Setup values
+			setupDialogValue();
 
-					switch (s.type) {
-						case "number":
-							s.element.classList.add("form-control");
-							s.element.value = s.value.toString();
-							group = [
-								element("label", {"for": key}, s.label),
-								s.element
-							];
-							break;
-						case "checkbox":
-							s.element.checked = s.value;
-							group = element("div", {"class": "checkbox"}, [
-								s.element,
-								element("label", {"for": key}, s.label)
-							]);
-							break;
-						default:
-							s.element.value = s.value;
-							s.element.classList.add("form-control");
-							group = [
-								element("label", {"for": key}, s.label),
-								s.element
-							];
-					}
-				}
+			// Create footer
+			createFooter(dialog);
 
-				dialog.body.appendChild(
-					element("div", {"class": "form-group"}, group)
-				);
-			}
-
-			btn = element("button", {"class": "btn-default"}, "Save");
-			btn.onclick = function() {
-				close(true);
-			};
-			dialog.footer.appendChild(btn);
-
-			btn = element("button", {"class": "btn-default"}, "Cancel");
-			btn.onclick = function() {
-				close();
-			};
-			dialog.footer.appendChild(btn);
-
-			var globalBtn = element("label", {class: "radio"}, [
-				element("input", {type: "radio", name: "working-scope", checked: !config.local, event: {
-					change: function () {
-						config.local = !this.checked;
-					}
-				}}),
-				"Global setting"
-			]);
-			dialog.footer.appendChild(globalBtn);
-
-			var localBtn = element("label", {class: "radio"}, [
-				element("input", {type: "radio", name: "working-scope", checked: config.local, event: {
-					change: function () {
-						config.local = this.checked;
-					}
-				}}),
-				"On " + location.hostname
-			]);
-			dialog.footer.appendChild(localBtn);
-
+			// Render
 			dialog.render();
 		}
 	}
@@ -308,6 +361,7 @@ var GM_config = function(){
 					con = key;
 				} else {
 					con = {};
+					// Create inputs
 				}
 				for (key in config.settings) {
 					con[key] = config.settings[key].value;
