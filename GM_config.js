@@ -364,7 +364,6 @@ var GM_config = function(){
 					con = key;
 				} else {
 					con = {};
-					// Create inputs
 				}
 				for (key in config.settings) {
 					con[key] = config.settings[key].value;
