@@ -3,7 +3,7 @@
 // @description	A library to help you set up configure in greasemonkey script.
 // @namespace   eight04.blogspot.com
 // @include     http*
-// @version     1.2.0
+// @version     1.3.0
 // @grant       GM_setValue
 // @grant		GM_getValue
 // @license		LGPL version 3 or any later version; http://www.gnu.org/copyleft/lgpl.html

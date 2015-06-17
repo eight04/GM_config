@@ -9,7 +9,10 @@ This project is a rewrite of [sizzlemctwizzle/GM_config][1] and use the interfac
 
 Features
 --------
-* Simple API to init config.
+* Create a dialog to show, edit settings.
+* Reset settings to default.
+* Save setting depends on different domains.
+* Import, export settings.
 * Supported input type:
 	- checkbox (boolean)
 	- number (number)
@@ -69,8 +72,7 @@ grunt
 
 Todos
 -----
-* Import, export settings.
-* Fix the flickering on closing dialog animation.
+Nothing to do here!
 
 License
 -------
@@ -78,6 +80,10 @@ LGPL version 3 or any later version; http://www.gnu.org/copyleft/lgpl.html
 
 Changelog
 ---------
+* 1.3.0 (Jin 18, 2015)
+	- Add import, export feature.
+	- Add local setting feature.
+	- Fix the flickering of opening, closing dialog.
 * 1.2.0 (Jun 15, 2015)
 	- Add transition animation.
 * 1.1.1 (Jun 15, 2015)
