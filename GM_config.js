@@ -20,7 +20,7 @@ var GM_config = function(){
 	}, dialog, css, GM_config;
 
 	function element(tag, attr, children) {
-		var e, key, i;
+		var e, key, key2, i;
 
 		e = document.createElement(tag);
 
@@ -32,6 +32,12 @@ var GM_config = function(){
 					} else {
 						e.removeAttribute(key);
 					}
+
+				} else if (key == "event") {
+					for (key2 in attr[key]) {
+						e["on" + key2] = attr[key][key2];
+					}
+
 				} else {
 					e.setAttribute(key, attr[key]);
 				}
@@ -70,6 +76,7 @@ var GM_config = function(){
 	function read() {
 		var key, s;
 		config.local = GM_getValue(location.hostname, false);
+		console.log(config.local);
 		for (key in config.settings) {
 			s = config.settings[key];
 			s.value = getValue(key, s.type);
@@ -82,6 +89,7 @@ var GM_config = function(){
 	function save() {
 		var key, s;
 		GM_setValue(location.hostname, config.local);
+		console.log(config.local);
 		for (key in config.settings) {
 			s = config.settings[key];
 			if (s.value == null) {
@@ -258,21 +266,23 @@ var GM_config = function(){
 			dialog.footer.appendChild(btn);
 
 			var globalBtn = element("label", {class: "radio"}, [
-				element("input", {type: "radio", name: "working-scope", checked: !config.local}),
+				element("input", {type: "radio", name: "working-scope", checked: !config.local, event: {
+					change: function () {
+						config.local = !this.checked;
+					}
+				}}),
 				"Global setting"
 			]);
-			globalBtn.onchange = function () {
-				config.local = !this.checked;
-			};
 			dialog.footer.appendChild(globalBtn);
 
 			var localBtn = element("label", {class: "radio"}, [
-				element("input", {type: "radio", name: "working-scope", checked: config.local}),
+				element("input", {type: "radio", name: "working-scope", checked: config.local, event: {
+					change: function () {
+						config.local = this.checked;
+					}
+				}}),
 				"On " + location.hostname
 			]);
-			localBtn.onchange = function() {
-				config.local = this.checked;
-			};
 			dialog.footer.appendChild(localBtn);
 
 			dialog.render();
