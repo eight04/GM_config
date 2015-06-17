@@ -161,6 +161,7 @@ var GM_config = function(){
 
 		return {
 			element: modal,
+			head: head,
 			body: body,
 			footer: footer,
 			render: render
@@ -204,7 +205,7 @@ var GM_config = function(){
 	}
 
 	function getConfigCssString() {
-		return "*,:after,:before{box-sizing:border-box}a{transition:all .2s linear}a:link,a:visited{color:#707070}a:active,a:hover{color:#0a53f8}.link{color:#707070;text-decoration:underline;cursor:pointer}body{font-size:16px;font-family:\"Helvetica Neue\",Helvetica,Arial,\"微軟正黑體\",sans-serif;color:#3d3d3d;margin:0;line-height:1}h1,h2,h3,h4,h5,h6{margin-top:30px;margin-bottom:15px;font-weight:700}h1 small,h2 small,h3 small,h4 small,h5 small,h6 small{font-size:70%;color:#8a8a8a}h1 .head-reset,h2 .head-reset,h3 .head-reset,h4 .head-reset,h5 .head-reset,h6 .head-reset{font-size:16px;font-weight:400}h1{font-size:260%}h2{font-size:215%;border-bottom:1px solid gray;padding-bottom:.25em}h3{font-size:170%}h4{font-size:125%}h5{font-size:100%}h6{font-size:85%}p{margin-top:.9375em;margin-bottom:.9375em;line-height:1.55}button,input,select,textarea{font-size:inherit;font-family:inherit;line-height:inherit;margin:0;padding:0;vertical-align:middle;height:2em;color:inherit;background-color:transparent;border:none}button:focus,input:focus,select:focus,textarea:focus{outline:0}:-moz-placeholder,::-moz-placeholder{opacity:1}:invalid{outline:0;box-shadow:none}textarea{height:auto;line-height:1.55;padding-top:.225em;padding-bottom:.225em}select{cursor:pointer;line-height:1.55}select[multiple]{height:auto}button{cursor:pointer;text-align:center;background-image:none}button::-moz-focus-inner{border:0;padding:0}img{vertical-align:text-bottom;max-width:100%;max-height:100%}code{font-family:Menlo,Monaco,Consolas,\"Courier New\",\"細明體\",monospace;background-color:#f0f0f0;font-size:90%;padding:.25em}pre{margin-top:1em;margin-bottom:1em;font-family:Menlo,Monaco,Consolas,\"Courier New\",\"細明體\",monospace}small{font-size:90%}hr{border:none;border-top:1px solid gray;margin:15px 0}::selection{background-color:rgba(255,169,46,.4)}::-moz-selection{background-color:rgba(255,169,46,.4)}fieldset,legend{border:0;margin:0;padding:0}input[type=checkbox],input[type=radio]{padding:0}.row-gap>fieldset>legend{position:relative;top:15px}input.ng-invalid,input.ng-invalid:focus,input.ng-invalid:hover,select.ng-invalid,select.ng-invalid:focus,select.ng-invalid:hover,textarea.ng-invalid,textarea.ng-invalid:focus,textarea.ng-invalid:hover{border-color:#cb1b1b}input[type=checkbox].ng-invalid,input[type=checkbox].ng-invalid:focus,input[type=checkbox].ng-invalid:hover,input[type=radio].ng-invalid,input[type=radio].ng-invalid:focus,input[type=radio].ng-invalid:hover{box-shadow:0 0 0 1px #cb1b1b}::-webkit-input-placeholder{color:#c9c9c9}::-moz-placeholder{color:#c9c9c9}:-ms-input-placeholder{color:#c9c9c9}:-moz-placeholder{color:#c9c9c9}.form-group{margin-top:1em;margin-bottom:1em}.row>.form-group{margin:0}label,legend{vertical-align:bottom}label .checkbox,label .form-control,label .input-group,label .radio,label+.checkbox,label+.form-control,label+.input-group,label+.radio,legend .checkbox,legend .form-control,legend .input-group,legend .radio,legend+.checkbox,legend+.form-control,legend+.input-group,legend+.radio{margin-top:.3em}.form-control{border:1px solid gray;border-radius:.1875em;width:100%;line-height:1;display:inline-block;padding-left:.5em;padding-right:.5em;color:#707070;transition:.2s all linear}.form-control:hover{border-color:#ccc}.form-control:focus{border-color:#0a53f8;color:#242424}.form-control[disabled]{background-color:#f0f0f0;border-color:#ccc;cursor:not-allowed}.form-control[disabled]:active,.form-control[disabled]:hover{border-color:#ccc}.checkbox,.radio{position:relative}.checkbox input[type=checkbox],.checkbox input[type=radio],.radio input[type=checkbox],.radio input[type=radio]{color:inherit;position:absolute;width:auto;height:auto;top:0;bottom:0;left:0;margin:auto 0}.checkbox label,.radio label{display:inline-block;padding-left:1.5em;cursor:pointer;line-height:1.55;transition:.2s all linear}.checkbox label:hover,.radio label:hover{color:#707070}.form-inline .checkbox,.form-inline .form-group,.form-inline .radio,.form-inline button,.form-inline fieldset,.form-inline input,.form-inline select{display:inline-block;vertical-align:middle;width:auto;margin:0}.btn-default{border:1px solid gray;border-radius:.1875em;transition-property:border-color,box-shadow;transition-duration:.2s;transition-timing-function:linear;padding-left:.5em;padding-right:.5em;min-width:4.25em}.btn-default:hover{border-color:#ccc}.btn-default:focus{color:#3d3d3d;border-color:#0a53f8}.btn-default:active{border-color:#0a53f8;box-shadow:inset .12em .12em .5em #dedede}.btn-default[disabled]{background-color:#f0f0f0;border-color:#ccc;cursor:not-allowed}.btn-default[disabled]:active,.btn-default[disabled]:hover{border-color:#ccc}.btn-sm{border:1px solid gray;border-radius:.1875em;transition-property:border-color,box-shadow;transition-duration:.2s;transition-timing-function:linear;width:2em;line-height:.8}.btn-sm:hover{border-color:#ccc}.btn-sm:focus{color:#3d3d3d;border-color:#0a53f8}.btn-sm:active{border-color:#0a53f8;box-shadow:inset .12em .12em .5em #dedede}.btn-sm[disabled]{background-color:#f0f0f0;border-color:#ccc;cursor:not-allowed}.btn-sm[disabled]:active,.btn-sm[disabled]:hover{border-color:#ccc}.btn-close{width:1em;height:1em;vertical-align:baseline;color:#707070}.btn-close:hover{color:inherit}.btn-circle{display:inline-block;width:1.25em;height:1.25em;text-align:center;line-height:1.25;font-size:80%;vertical-align:baseline;border-radius:50%;border:1px solid #707070;margin:-1px 0;color:#707070}.btn-circle:hover{color:inherit;border-color:inherit}.btn-block{display:block;width:100%}.btn-group{display:block;display:inline-block;border:1px solid gray;border-radius:.1875em}.btn-group>*{display:table-cell;vertical-align:middle;white-space:nowrap;border-width:0 1px;border-radius:0;margin-right:-1px}.btn-group>:first-child{margin-left:-1px}body{display:inline-block;padding:30px;overflow:hidden}.config-dialog-head{font-weight:700;font-size:120%}.config-dialog-footer.form-inline>*+*{margin-left:15px}.config-dialog-footer.form-inline label.radio{padding:4px 0 1px 18px}";
+		return "*,:after,:before{box-sizing:border-box}a{transition:all .2s linear}a:link,a:visited{color:#707070}a:active,a:hover{color:#0a53f8}.link{color:#707070;text-decoration:underline;cursor:pointer}body{font-size:16px;font-family:\"Helvetica Neue\",Helvetica,Arial,\"微軟正黑體\",sans-serif;color:#3d3d3d;margin:0;line-height:1}h1,h2,h3,h4,h5,h6{margin-top:30px;margin-bottom:15px;font-weight:700}h1 small,h2 small,h3 small,h4 small,h5 small,h6 small{font-size:70%;color:#8a8a8a}h1 .head-reset,h2 .head-reset,h3 .head-reset,h4 .head-reset,h5 .head-reset,h6 .head-reset{font-size:16px;font-weight:400}h1{font-size:260%}h2{font-size:215%;border-bottom:1px solid gray;padding-bottom:.25em}h3{font-size:170%}h4{font-size:125%}h5{font-size:100%}h6{font-size:85%}p{margin-top:.9375em;margin-bottom:.9375em;line-height:1.55}button,input,select,textarea{font-size:inherit;font-family:inherit;line-height:inherit;margin:0;padding:0;vertical-align:middle;height:2em;color:inherit;background-color:transparent;border:none}button:focus,input:focus,select:focus,textarea:focus{outline:0}:-moz-placeholder,::-moz-placeholder{opacity:1}:invalid{outline:0;box-shadow:none}textarea{height:auto;line-height:1.55;padding-top:.225em;padding-bottom:.225em}select{cursor:pointer;line-height:1.55}select[multiple]{height:auto}button{cursor:pointer;text-align:center;background-image:none}button::-moz-focus-inner{border:0;padding:0}img{vertical-align:text-bottom;max-width:100%;max-height:100%}code{font-family:Menlo,Monaco,Consolas,\"Courier New\",\"細明體\",monospace;background-color:#f0f0f0;font-size:90%;padding:.25em}pre{margin-top:1em;margin-bottom:1em;font-family:Menlo,Monaco,Consolas,\"Courier New\",\"細明體\",monospace}small{font-size:90%}hr{border:none;border-top:1px solid gray;margin:15px 0}::selection{background-color:rgba(255,169,46,.4)}::-moz-selection{background-color:rgba(255,169,46,.4)}fieldset,legend{border:0;margin:0;padding:0}input[type=checkbox],input[type=radio]{padding:0}.row-gap>fieldset>legend{position:relative;top:15px}input.ng-invalid,input.ng-invalid:focus,input.ng-invalid:hover,select.ng-invalid,select.ng-invalid:focus,select.ng-invalid:hover,textarea.ng-invalid,textarea.ng-invalid:focus,textarea.ng-invalid:hover{border-color:#cb1b1b}input[type=checkbox].ng-invalid,input[type=checkbox].ng-invalid:focus,input[type=checkbox].ng-invalid:hover,input[type=radio].ng-invalid,input[type=radio].ng-invalid:focus,input[type=radio].ng-invalid:hover{box-shadow:0 0 0 1px #cb1b1b}::-webkit-input-placeholder{color:#c9c9c9}::-moz-placeholder{color:#c9c9c9}:-ms-input-placeholder{color:#c9c9c9}:-moz-placeholder{color:#c9c9c9}.form-group{margin-top:1em;margin-bottom:1em}.row>.form-group{margin:0}label,legend{vertical-align:bottom}label .checkbox,label .form-control,label .input-group,label .radio,label+.checkbox,label+.form-control,label+.input-group,label+.radio,legend .checkbox,legend .form-control,legend .input-group,legend .radio,legend+.checkbox,legend+.form-control,legend+.input-group,legend+.radio{margin-top:.3em}.form-control{border:1px solid gray;border-radius:.1875em;width:100%;line-height:1;display:inline-block;padding-left:.5em;padding-right:.5em;color:#707070;transition:.2s all linear}.form-control:hover{border-color:#ccc}.form-control:focus{border-color:#0a53f8;color:#242424}.form-control[disabled]{background-color:#f0f0f0;border-color:#ccc;cursor:not-allowed}.form-control[disabled]:active,.form-control[disabled]:hover{border-color:#ccc}.checkbox,.radio{position:relative}.checkbox input[type=checkbox],.checkbox input[type=radio],.radio input[type=checkbox],.radio input[type=radio]{color:inherit;position:absolute;width:auto;height:auto;top:0;bottom:0;left:0;margin:auto 0}.checkbox label,.radio label{display:inline-block;padding-left:1.5em;cursor:pointer;line-height:1.55;transition:.2s all linear}.checkbox label:hover,.radio label:hover{color:#707070}.form-inline .checkbox,.form-inline .form-group,.form-inline .radio,.form-inline button,.form-inline fieldset,.form-inline input,.form-inline select{display:inline-block;vertical-align:middle;width:auto;margin:0}.btn-default{border:1px solid gray;border-radius:.1875em;transition-property:border-color,box-shadow;transition-duration:.2s;transition-timing-function:linear;padding-left:.5em;padding-right:.5em;min-width:4.25em}.btn-default:hover{border-color:#ccc}.btn-default:focus{color:#3d3d3d;border-color:#0a53f8}.btn-default:active{border-color:#0a53f8;box-shadow:inset .12em .12em .5em #dedede}.btn-default[disabled]{background-color:#f0f0f0;border-color:#ccc;cursor:not-allowed}.btn-default[disabled]:active,.btn-default[disabled]:hover{border-color:#ccc}.btn-sm{border:1px solid gray;border-radius:.1875em;transition-property:border-color,box-shadow;transition-duration:.2s;transition-timing-function:linear;width:2em;line-height:.8}.btn-sm:hover{border-color:#ccc}.btn-sm:focus{color:#3d3d3d;border-color:#0a53f8}.btn-sm:active{border-color:#0a53f8;box-shadow:inset .12em .12em .5em #dedede}.btn-sm[disabled]{background-color:#f0f0f0;border-color:#ccc;cursor:not-allowed}.btn-sm[disabled]:active,.btn-sm[disabled]:hover{border-color:#ccc}.btn-close{width:1em;height:1em;vertical-align:baseline;color:#707070}.btn-close:hover{color:inherit}.btn-circle{display:inline-block;width:1.25em;height:1.25em;text-align:center;line-height:1.25;font-size:80%;vertical-align:baseline;border-radius:50%;border:1px solid #707070;margin:-1px 0;color:#707070}.btn-circle:hover{color:inherit;border-color:inherit}.btn-block{display:block;width:100%}.btn-group{display:block;display:inline-block;border:1px solid gray;border-radius:.1875em}.btn-group>*{display:table-cell;vertical-align:middle;white-space:nowrap;border-width:0 1px;border-radius:0;margin-right:-1px}.btn-group>:first-child{margin-left:-1px}body{display:inline-block;padding:30px;overflow:hidden}.config-dialog-head{font-weight:700;font-size:120%}.config-dialog-head .btn-sm{font-size:50%;font-weight:400;width:auto;padding:0 2px;float:right}.config-dialog-head .btn-sm+*{margin-right:5px}.config-dialog-footer.form-inline>*+*{margin-left:15px}.config-dialog-footer.form-inline label.radio{padding:4px 0 1px 18px}";
 	}
 
 	function getCssString() {
@@ -219,10 +220,12 @@ var GM_config = function(){
 
 			if (reset) {
 				value = setting.default;
-			} else if (imports) {
-				value = imports[key];
 			} else {
-				value = setting.value;
+				if (imports && imports[key] != undefined) {
+					value = imports[key];
+				} else {
+					value = setting.value;
+				}
 			}
 
 			switch (setting.type) {
@@ -329,6 +332,36 @@ var GM_config = function(){
 		]));
 	}
 
+	function exportSetting() {
+		var exports = JSON.stringify(getConfigObj());
+		prompt("Copy:", exports);
+	}
+
+	function importSetting() {
+		var imports = prompt("Paste your setting:"), setting;
+		if (!imports) {
+			return;
+		}
+		try {
+			setting = JSON.parse(imports);
+		} catch (err) {
+			alert("Invalid JSON!");
+			return;
+		}
+		setupDialogValue(false, setting);
+	}
+
+	function createHead(dialog) {
+		dialog.head.appendChild(frag([
+			element("button", {class: "btn-sm", event: {
+				click: exportSetting
+			}}, "Export"),
+			element("button", {class: "btn-sm", event: {
+				click: importSetting
+			}}, "Import")
+		]));
+	}
+
 	function open() {
 		if (!css) {
 			css = element("style", {"id": "config-css"}, getCssString());
@@ -337,6 +370,9 @@ var GM_config = function(){
 
 		if (!dialog) {
 			dialog = createDialog(config.title);
+
+			// Create head
+			createHead(dialog);
 
 			// Create inputs
 			createInputs(dialog);

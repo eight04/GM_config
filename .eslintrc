@@ -12,7 +12,8 @@
 		"no-use-before-define": [2, "nofunc"],
 		"no-unused-vars": [2, {"vars": "local"}],
 		"quotes": 0,
-		"strict": 0
+		"strict": 0,
+		"no-alert": 0
 	},
 	"globals": {
 		"GM_registerMenuCommand": false,

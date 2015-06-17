@@ -161,6 +161,7 @@ var GM_config = function(){
 
 		return {
 			element: modal,
+			head: head,
 			body: body,
 			footer: footer,
 			render: render
@@ -219,10 +220,12 @@ var GM_config = function(){
 
 			if (reset) {
 				value = setting.default;
-			} else if (imports) {
-				value = imports[key];
 			} else {
-				value = setting.value;
+				if (imports && imports[key] != undefined) {
+					value = imports[key];
+				} else {
+					value = setting.value;
+				}
 			}
 
 			switch (setting.type) {
@@ -329,6 +332,36 @@ var GM_config = function(){
 		]));
 	}
 
+	function exportSetting() {
+		var exports = JSON.stringify(getConfigObj());
+		prompt("Copy:", exports);
+	}
+
+	function importSetting() {
+		var imports = prompt("Paste your setting:"), setting;
+		if (!imports) {
+			return;
+		}
+		try {
+			setting = JSON.parse(imports);
+		} catch (err) {
+			alert("Invalid JSON!");
+			return;
+		}
+		setupDialogValue(false, setting);
+	}
+
+	function createHead(dialog) {
+		dialog.head.appendChild(frag([
+			element("button", {class: "btn-sm", event: {
+				click: exportSetting
+			}}, "Export"),
+			element("button", {class: "btn-sm", event: {
+				click: importSetting
+			}}, "Import")
+		]));
+	}
+
 	function open() {
 		if (!css) {
 			css = element("style", {"id": "config-css"}, getCssString());
@@ -337,6 +370,9 @@ var GM_config = function(){
 
 		if (!dialog) {
 			dialog = createDialog(config.title);
+
+			// Create head
+			createHead(dialog);
 
 			// Create inputs
 			createInputs(dialog);
