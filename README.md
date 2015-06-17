@@ -2,7 +2,7 @@ GM_config
 =========
 A library to help you set up configure in greasemonkey script.
 
-This project is a rewrite of [sizzlemctwizzle/GM_config][1] and use the interface similar to [GM_config (JoeSimmons)][2].
+This project is a rewrite of [sizzlemctwizzle/GM_config][1] and use the interface similar to [GM_config (JoeSimmons)][2] (the legacy interface of [sizzlemctwizzle/GM_config][1]).
 
 [1]: https://github.com/sizzlemctwizzle/GM_config
 [2]: https://greasyfork.org/en/scripts/1884-gm-config
@@ -72,7 +72,7 @@ grunt
 
 Todos
 -----
-Nothing to do here!
+* Create dialog with htmlString?
 
 License
 -------
