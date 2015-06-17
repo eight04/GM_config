@@ -16,7 +16,7 @@ var GM_config = function(){
 	var config = {
 		title: null,
 		settings: null,
-		local: GM_getValue(location.hostname, false)
+		local: false
 	}, dialog, css, GM_config;
 
 	function element(tag, attr, children) {
@@ -69,6 +69,7 @@ var GM_config = function(){
 
 	function read() {
 		var key, s;
+		config.local = GM_getValue(location.hostname, false);
 		for (key in config.settings) {
 			s = config.settings[key];
 			s.value = getValue(key, s.type);
@@ -80,6 +81,7 @@ var GM_config = function(){
 
 	function save() {
 		var key, s;
+		GM_setValue(location.hostname, config.local);
 		for (key in config.settings) {
 			s = config.settings[key];
 			if (s.value == null) {
