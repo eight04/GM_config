@@ -26,7 +26,15 @@ var GM_config = function(){
 
 		if (attr) {
 			for (key in attr) {
-				e.setAttribute(key, attr[key]);
+				if (typeof attr[key] == "boolean") {
+					if (attr[key]) {
+						e.setAttribute(key, "");
+					} else {
+						e.removeAttribute(key);
+					}
+				} else {
+					e.setAttribute(key, attr[key]);
+				}
 			}
 		}
 
@@ -251,8 +259,8 @@ var GM_config = function(){
 				element("input", {type: "radio", name: "working-scope"}),
 				"Global setting"
 			]);
-			globalBtn.onclick = function () {
-				config.local = false;
+			globalBtn.onchange = function () {
+				config.local = !this.checked;
 			};
 			dialog.footer.appendChild(globalBtn);
 
@@ -260,8 +268,8 @@ var GM_config = function(){
 				element("input", {type: "radio", name: "working-scope"}),
 				"On " + location.hostname
 			]);
-			localBtn.click = function() {
-				config.local = true;
+			localBtn.onchange = function() {
+				config.local = this.checked;
 			};
 			dialog.footer.appendChild(localBtn);
 

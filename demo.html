@@ -3,8 +3,9 @@
 <head>
 	<meta charset="UTF-8">
 	<title>GM_config</title>
+	<link rel="stylesheet" href="https://rawgit.com/eight04/GM_simulator/master/simulator.css">
+	<script src="https://rawgit.com/eight04/GM_simulator/master/simulator.js"></script>
 	<script src="GM_config.js"></script>
-	<script src="https://code.jquery.com/jquery-1.11.2.js"></script>
 </head>
 <body class="container-sm">
 	<h2>GM_config <small>Demo Page</small></h2>
@@ -12,19 +13,6 @@
 	<h3>GM_config.get()</h3>
 	<pre id="output"></pre>
 	<script>
-		var benchmark = function(){
-			var time = Date.now();
-			return function(title) {
-				var time2 = Date.now()
-				console.log("+" + (time2 - time), title);
-				time = time2;
-			}
-		}();
-
-		function GM_getValue() {}
-
-		function GM_setValue() {}
-
 		GM_config.init(
 			"Scroll like Opera",
 			{
@@ -63,8 +51,8 @@
 		log();
 		GM_config.onclose = log;
 
-		function log(){
-			$("#output").text(JSON.stringify(GM_config.get(), null, "\t"));
+		function log() {
+			document.querySelector("#output").textContent = JSON.stringify(GM_config.get(), null, 4);
 		}
 	</script>
 	</body>
