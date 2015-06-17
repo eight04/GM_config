@@ -15,7 +15,8 @@ var GM_config = function(){
 
 	var config = {
 		title: null,
-		settings: null
+		settings: null,
+		local: GM_getValue(location.hostname, false)
 	}, dialog, css, GM_config;
 
 	function element(tag, attr, children) {
@@ -45,10 +46,16 @@ var GM_config = function(){
 	}
 
 	function getValue(key) {
+		if (config.local) {
+			key = location.hostname + "/" + key;
+		}
 		return GM_getValue(key);
 	}
 
 	function setValue(key, value) {
+		if (config.local) {
+			key = location.hostname + "/" + key;
+		}
 		GM_setValue(key, value);
 	}
 
@@ -92,7 +99,7 @@ var GM_config = function(){
 
 		var head = element("div", {"class": "config-dialog-head"}, title);
 		var body = element("div", {"class": "config-dialog-body"});
-		var footer = element("div", {"class": "config-dialog-footer"});
+		var footer = element("div", {"class": "config-dialog-footer form-inline"});
 
 		var style = element("style", null, getConfigCssString());
 
@@ -239,6 +246,24 @@ var GM_config = function(){
 				close();
 			};
 			dialog.footer.appendChild(btn);
+
+			var globalBtn = element("label", {class: "radio", checked: !config.local}, [
+				element("input", {type: "radio", name: "working-scope"}),
+				"Global setting"
+			]);
+			globalBtn.onclick = function () {
+				config.local = false;
+			};
+			dialog.footer.appendChild(globalBtn);
+
+			var localBtn = element("label", {class: "radio", checked: config.local}, [
+				element("input", {type: "radio", name: "working-scope"}),
+				"On " + location.hostname
+			]);
+			localBtn.click = function() {
+				config.local = true;
+			};
+			dialog.footer.appendChild(localBtn);
 
 			dialog.render();
 		}
