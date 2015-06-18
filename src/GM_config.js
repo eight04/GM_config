@@ -9,6 +9,8 @@
 // @copyright   2015+, eight <https://github.com/eight04/GM_config>
 // @homepageURL https://github.com/eight04/GM_config
 // @supportURL  https://github.com/eight04/GM_config/issues
+// @attribution sizzlemctwizzle (https://github.com/sizzlemctwizzle/GM_config)
+// @attribution Joe Simmons (https://greasyfork.org/en/scripts/1884-gm-config)
 // ==/UserScript==
 
 var GM_config = function(){
