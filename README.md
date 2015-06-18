@@ -81,6 +81,8 @@ LGPL version 3 or any later version; http://www.gnu.org/copyleft/lgpl.html
 
 Changelog
 ---------
+* 2.0.3 (Jun 18, 2015)
+	- Fix dialog footer style.
 * 2.0.2 (Jun 18, 2015)
 	- Add license header to source.
 * 2.0.1 (Jun 18, 2015)
