@@ -23,7 +23,7 @@ Demo
 ----
 Checkout the [demo page][3].
 
-[3]: https://rawgit.com/eight04/GM_config/master/demo.html
+[3]: https://rawgit.com/eight04/GM_config/master/demo/demo.html
 
 Usage Examples
 --------------
@@ -80,7 +80,9 @@ LGPL version 3 or any later version; http://www.gnu.org/copyleft/lgpl.html
 
 Changelog
 ---------
-* 1.3.0 (Jin 18, 2015)
+* 2.0.0 (Jun 18, 2015)
+	- Change folder structure.
+* 1.3.0 (Jun 18, 2015)
 	- Add import, export feature.
 	- Add local setting feature.
 	- Fix the flickering of opening, closing dialog.
