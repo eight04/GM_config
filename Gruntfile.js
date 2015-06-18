@@ -84,5 +84,5 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-concat');
 
 	// Tasks
-	grunt.registerTask('default', ["less", "cssmin", 'replace', 'concat', 'clean']);
+	grunt.registerTask('default', ["less", "cssmin", 'replace', 'clean']);
 };
