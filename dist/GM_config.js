@@ -21,7 +21,7 @@ GM_config is distributed under the terms of the GNU Lesser General Public Licens
 // @name        GM_config (eight's version)
 // @description	A library to help you set up configure in greasemonkey script.
 // @namespace   eight04.blogspot.com
-// @version     2.0.0
+// @version     2.0.1
 // @grant       GM_setValue
 // @grant		GM_getValue
 // @license		LGPL version 3 or any later version; http://www.gnu.org/copyleft/lgpl.html

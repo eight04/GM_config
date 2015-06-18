@@ -80,6 +80,8 @@ LGPL version 3 or any later version; http://www.gnu.org/copyleft/lgpl.html
 
 Changelog
 ---------
+* 2.0.1 (Jun 18, 2015)
+	- Update meta data.
 * 2.0.0 (Jun 18, 2015)
 	- Change folder structure.
 * 1.3.0 (Jun 18, 2015)
