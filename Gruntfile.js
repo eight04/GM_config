@@ -1,4 +1,5 @@
 /* eslint strict: 0 */
+/* globals module */
 
 module.exports = function(grunt) {
 
@@ -10,12 +11,12 @@ module.exports = function(grunt) {
 				files: "Gruntfile.js"
 			},
 			src: {
-				files: ["*.src.js", "*.less"],
+				files: ["src/*"],
 				tasks: ["default"]
 			}
 		},
 		replace: {
-			css: {
+			css2Js: {
 				options: {
 					patterns: [
 						{
@@ -24,43 +25,51 @@ module.exports = function(grunt) {
 						}
 					]
 				},
-				files: {
-					"style.css": "style.css",
-					"end2end.css": "end2end.css"
-				}
+				expand: true,
+				cwd: "temp",
+				src: "*.css",
+				dest: "temp"
 			},
-			includeCss: {
+			injectCss: {
 				options: {
 					patterns: [
 						{
 							match: "CSS",
-							replacement: "<%= grunt.file.read('style.css') %>"
+							replacement: "<%= grunt.file.read('temp/style.css') %>"
 						},
 						{
 							match: "CONFIGCSS",
-							replacement: "<%= grunt.file.read('end2end.css') %>"
+							replacement: "<%= grunt.file.read('temp/style-dialog.css') %>"
 						}
 					]
 				},
 				files: {
-					"GM_config.js": "GM_config.src.js"
+					"dist/GM_config.js": "src/GM_config.js"
 				}
 			}
 		},
-		clean: ["*.css"],
+		clean: ["temp"],
 		cssmin: {
 			css: {
-				files: {
-					"style.css": "style.css",
-					"end2end.css": "end2end.css"
-				}
+				expand: true,
+				cwd: "temp",
+				src: "*.css",
+				dest: "temp"
 			}
 		},
 		less: {
 			css: {
+				expand: true,
+				cwd: "src",
+				src: "*.less",
+				dest: "temp",
+				ext: ".css"
+			}
+		},
+		concat: {
+			js: {
 				files: {
-					"end2end.css": "end2end.less",
-					"style.css": "GM_config.less"
+					"dist/GM_config.js": ["license/copyright.txt", "dist/GM_config.js"]
 				}
 			}
 		}
@@ -72,7 +81,8 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-clean');
 	grunt.loadNpmTasks('grunt-contrib-cssmin');
 	grunt.loadNpmTasks('grunt-contrib-less');
+	grunt.loadNpmTasks('grunt-contrib-concat');
 
 	// Tasks
-	grunt.registerTask('default', ["less", "cssmin", 'replace', 'clean']);
+	grunt.registerTask('default', ["less", "cssmin", 'replace', 'concat', 'clean']);
 };
