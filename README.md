@@ -73,6 +73,7 @@ grunt
 Todos
 -----
 * Create dialog with htmlString?
+* Add `white-space: nowrap` to dialog footer.
 
 License
 -------
