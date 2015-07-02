@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Memory Test</title>
+	<script src="../../GM_simulator/simulator.js"></script>
+	<script src="../dist/GM_config.js"></script>
+	<script>
+		GM_config.init("Test", {
+			number: {
+				label: "Number",
+				type: "number",
+				default: "123"
+			},
+			text: {
+				label: "Text",
+				type: "text",
+				default: "Test string"
+			},
+			textarea: {
+				label: "Test area",
+				type: "textarea",
+				default: "Test string...."
+			},
+			checkbox: {
+				label: "Checkbox",
+				type: "checkbox",
+				default: true
+			}
+		});
+
+		function leakTask() {
+			GM_config.open();
+			GM_config.close();
+		}
+
+		function leak() {
+			setInterval(leakTask, 10);
+		}
+	</script>
+</head>
+<body>
+	<button onclick="leak()">Start</button>
+</body>
+</html>
