@@ -1,59 +1,17 @@
 <!doctype html>
-<html lang="en" ng-app>
+<html lang="en">
 <head>
 	<meta charset="UTF-8">
 	<title>GM_config</title>
 	<link rel="stylesheet" href="https://rawgit.com/eight04/GM_simulator/master/simulator.css">
-	<script src="https://rawgit.com/eight04/GM_simulator/master/simulator.js"></script>
-	<script src="../dist/GM_config.js"></script>
+<!--	<script src="https://rawgit.com/eight04/GM_simulator/master/simulator.js"></script>-->
+	<script src="../../GM_simulator/simulator.js"></script>
+	<script src="test.user.js"></script>
 </head>
 <body class="container-sm">
 	<h2>GM_config <small>Demo Page</small></h2>
-	<button class="btn-default" onclick="GM_config.open()">Config</button>
+	<button class="btn-default open-config">Config</button>
 	<h3>GM_config.get()</h3>
-	<pre id="output"></pre>
-	<script>
-		GM_config.init(
-			"Scroll like Opera",
-			{
-				useWhenOnScrollbar: {
-					label: "Scroll horizontally if cursor hover on horizontal scrollbar.",
-					type: "checkbox",
-					default: true
-				},
-				useWhenOneScrollbar: {
-					label: "Scroll horizontally if there is only horizontal scrollbar presented.",
-					type: "checkbox",
-					default: true
-				},
-				useAlways: {
-					label: "Always use script's scrolling handler. Enable this if you want to use the script's smooth scrolling on chrome.",
-					type: "checkbox",
-					default: false
-				},
-				scrollDelay: {
-					label: "Smooth scrolling delay.",
-					type: "number",
-					default: 400
-				},
-				scrollOffset: {
-					label: "Scrolling offset.",
-					type: "number",
-					default: 120
-				},
-				other: {
-					label: "Textarea test.",
-					type: "textarea",
-					default: "Write something."
-				}
-			}
-		);
-		log();
-		GM_config.onclose = log;
-
-		function log() {
-			document.querySelector("#output").textContent = JSON.stringify(GM_config.get(), null, 4);
-		}
-	</script>
-	</body>
+	<pre class="output"></pre>
+</body>
 </html>
