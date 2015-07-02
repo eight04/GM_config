@@ -27,7 +27,7 @@ GM_config is distributed under the terms of the GNU Lesser General Public Licens
 // @name        GM_config (eight's version)
 // @description	A library to help you set up configure in greasemonkey script.
 // @namespace   eight04.blogspot.com
-// @version     2.0.2
+// @version     2.0.3
 // @grant       GM_setValue
 // @grant		GM_getValue
 // @license		LGPL version 3 or any later version; http://www.gnu.org/copyleft/lgpl.html
@@ -241,7 +241,7 @@ var GM_config = function(){
 	}
 
 	function getCssString() {
-		return ".config-dialog-open{overflow:hidden}.config-dialog{position:fixed;top:0;left:0;right:0;bottom:0;vertical-align:middle;text-align:center;background:rgba(0,0,0,.5);overflow:auto;z-index:99999;opacity:0;transition:opacity .2s linear}.config-dialog:before{content:\"\";display:inline-block;height:100%;vertical-align:middle}.config-dialog-ani{opacity:1}.config-dialog-content{text-align:left;display:inline-block;width:90%;vertical-align:middle;background:#fff;margin:30px 0;box-shadow:0 0 30px #000;border-width:0;transition:transform .2s linear;transform:translateY(-20px)}.config-dialog-ani .config-dialog-content{transform:none}";
+		return ".config-dialog-open{overflow:hidden}.config-dialog{position:fixed;top:0;left:0;right:0;bottom:0;vertical-align:middle;text-align:center;background:rgba(0,0,0,.5);overflow:auto;z-index:99999;opacity:0;transition:opacity .2s linear;white-space:nowrap}.config-dialog:before{content:\"\";display:inline-block;height:100%;vertical-align:middle}.config-dialog-ani{opacity:1}.config-dialog-content{text-align:left;display:inline-block;width:90%;vertical-align:middle;background:#fff;margin:30px 0;box-shadow:0 0 30px #000;border-width:0;transition:transform .2s linear;transform:translateY(-20px)}.config-dialog-ani .config-dialog-content{transform:none}";
 	}
 
 	function setupDialogValue (reset, imports) {
