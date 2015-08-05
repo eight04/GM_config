@@ -13,6 +13,7 @@ Features
 * Reset settings to default.
 * Save setting depends on different domains.
 * Import, export settings.
+	- Note: export function will only grab settings on current domain.
 * Supported input type:
 	- checkbox (boolean)
 	- number (number)
