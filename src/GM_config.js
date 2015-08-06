@@ -221,6 +221,10 @@ var GM_config = function(){
 					case "radio":
 						s.value = s.element.querySelector("input:checked").value;
 						break;
+					case "select":
+						s.value = s.multiple ? Array.prototype.map.call(s.element.querySelectorAll("option:checked"), function(opt){
+							return opt.value;
+						}) : s.element.querySelector("option:checked").value;
 					default:
 						s.value = s.element.value;
 				}
@@ -293,15 +297,31 @@ var GM_config = function(){
 					s.element
 				];
 			} else if (s.type == "radio") {
-				s.element = element("fieldset", null, Object.keys(s.options).reduce(function(list, optKey){
-					return list.concat(element("label", {class: "radio"}, [
+				s.element = element("fieldset", null, [element("legend", null, s.label)].concat(Object.keys(s.options).map(function(optKey){
+					return element("label", {class: "radio"}, [
 						element("input", {type: "radio", name: key, value: optKey, checked: optKey == s.default}),
 						s.options[optKey]
-					]));
-				}, [element("legend", null, s.label)]));
+					]);
+				})));
 				group = [
 					s.element
 				];
+			} else if (s.type == "select") {
+				s.element = element(
+					"select",
+					{class: "form-control", multiple: !!s.mutiple},
+					Object.keys(s.options).map(function(optKey){
+						return element(
+							"option",
+							{value: optKey, selected: optKey == s.default},
+							s.options[optKey]
+						);
+					})
+				);
+				group = element("label", null, [
+					s.label,
+					s.element
+				]);
 			} else {
 				s.element = element("input", {"id": key, "type": s.type});
 
