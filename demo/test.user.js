@@ -43,6 +43,26 @@ GM_config.init("GM_config Test", {
 			tw: "Traditional Chinese",
 			cn: "Simplified Chinese"
 		}
+	},
+	select: {
+		label: "Choose a color",
+		type: "select",
+		default: "orange",
+		options: {
+			red: "Red",
+			orange: "Orange",
+			yellow: "Yellow"
+		}
+	},
+	select2: {
+		label: "Multiple select",
+		type: "select",
+		default: [],
+		options: {
+			n1: "1",
+			n2: "2",
+			n3: "3"
+		}
 	}
 });
 
