@@ -299,6 +299,9 @@ var GM_config = function(){
 						s.options[optKey]
 					]));
 				}, [element("legend", null, s.label)]));
+				group = [
+					s.element
+				];
 			} else {
 				s.element = element("input", {"id": key, "type": s.type});
 
