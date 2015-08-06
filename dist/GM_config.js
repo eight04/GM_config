@@ -218,6 +218,9 @@ var GM_config = function(){
 					case "checkbox":
 						s.value = s.element.checked;
 						break;
+					case "radio":
+						s.value = s.element.querySelector("input:checked").value;
+						break;
 					default:
 						s.value = s.element.value;
 				}
@@ -289,6 +292,13 @@ var GM_config = function(){
 					element("label", {"for": key}, s.label),
 					s.element
 				];
+			} else if (s.type == "radio") {
+				s.element = element("fieldset", null, Object.keys(s.options).reduce(function(list, optKey){
+					return list.concat(element("label", {class: "radio"}, [
+						element("input", {type: "radio", name: key, value: optKey, checked: optKey == s.default}),
+						s.options[optKey]
+					]));
+				}, [element("legend", null, s.label)]));
 			} else {
 				s.element = element("input", {"id": key, "type": s.type});
 
