@@ -276,6 +276,19 @@ var GM_config = function(){
 					setting.element.checked = value;
 					break;
 
+				case "radio":
+					setting.element.querySelector("[value=" + value + "]").checked = true;
+					break;
+
+				case "select":
+					if (!setting.multiple) {
+						value = [value];
+					}
+					value.forEach(function(value){
+						setting.element.querySelector("[value=" + value + "]").selected = true;
+					});
+					break;
+
 				default:
 					setting.element.value = value;
 					break;
@@ -299,7 +312,7 @@ var GM_config = function(){
 			} else if (s.type == "radio") {
 				s.element = element("fieldset", null, [element("legend", null, s.label)].concat(Object.keys(s.options).map(function(optKey){
 					return element("label", {class: "radio"}, [
-						element("input", {type: "radio", name: key, value: optKey, checked: optKey == s.default}),
+						element("input", {type: "radio", name: key, value: optKey}),
 						s.options[optKey]
 					]);
 				})));
@@ -313,7 +326,7 @@ var GM_config = function(){
 					Object.keys(s.options).map(function(optKey){
 						return element(
 							"option",
-							{value: optKey, selected: optKey == s.default},
+							{value: optKey},
 							s.options[optKey]
 						);
 					})
