@@ -33,6 +33,16 @@ GM_config.init("GM_config Test", {
 		label: "Textarea field",
 		type: "textarea",
 		default: "multi\nline"
+	},
+	radio: {
+		label: "Select your language",
+		type: "radio",
+		default: "en",
+		options: {
+			en: "English",
+			tw: "Traditional Chinese",
+			cn: "Simplified Chinese"
+		}
 	}
 });
 
