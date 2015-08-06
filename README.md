@@ -19,6 +19,8 @@ Features
 	- number (number)
 	- text (string)
 	- textarea (string)
+	- radio (string)
+	- select (string or array)
 
 Demo
 ----
@@ -75,6 +77,9 @@ Todos
 -----
 * Create dialog with htmlString?
 * Add `white-space: nowrap` to dialog footer.
+* Refactor
+	- Pull out createInput from createInputs.
+	- Pull out grabDialogSetting from close.
 
 License
 -------
@@ -82,6 +87,10 @@ LGPL version 3 or any later version; http://www.gnu.org/copyleft/lgpl.html
 
 Changelog
 ---------
+* 2.1.0 (Aug 7, 2015)
+	- Support radio.
+	- Support select.
+	- Update end2end.
 * 2.0.4 (Jul 3, 2015)
 	- Fix dialog container style.
 * 2.0.3 (Jun 18, 2015)
