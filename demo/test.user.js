@@ -62,7 +62,8 @@ GM_config.init("GM_config Test", {
 			n1: "1",
 			n2: "2",
 			n3: "3"
-		}
+		},
+		multiple: true
 	}
 });
 

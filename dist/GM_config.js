@@ -106,12 +106,20 @@ var GM_config = function(){
 		if (config.local) {
 			key = location.hostname + "/" + key;
 		}
-		return GM_getValue(key);
+		var value = GM_getValue(key);
+		if (GM_getValue(key + "/type") == "object") {
+			value = JSON.parse(value);
+		}
+		return value;
 	}
 
 	function setValue(key, value) {
 		if (config.local) {
 			key = location.hostname + "/" + key;
+		}
+		if (typeof value == "object") {
+			GM_setValue(key + "/type", "object");
+			value = JSON.stringify(value);
 		}
 		GM_setValue(key, value);
 	}
@@ -215,16 +223,28 @@ var GM_config = function(){
 					case "number":
 						s.value = +s.element.value;
 						break;
+
 					case "checkbox":
 						s.value = s.element.checked;
 						break;
+
 					case "radio":
 						s.value = s.element.querySelector("input:checked").value;
 						break;
+
 					case "select":
-						s.value = s.multiple ? Array.prototype.map.call(s.element.querySelectorAll("option:checked"), function(opt){
-							return opt.value;
-						}) : s.element.querySelector("option:checked").value;
+						if (!s.multiple) {
+							s.value = s.element.value;
+						} else {
+							s.value = Array.prototype.map.call(
+								s.element.selectedOptions,
+								function(ele){
+									return ele.value;
+								}
+							);
+						}
+						break;
+
 					default:
 						s.value = s.element.value;
 				}
@@ -282,11 +302,15 @@ var GM_config = function(){
 
 				case "select":
 					if (!setting.multiple) {
-						value = [value];
-					}
-					value.forEach(function(value){
 						setting.element.querySelector("[value=" + value + "]").selected = true;
-					});
+					} else {
+						while (setting.element.selectedOptions.length) {
+							setting.element.selectedOptions[0].selected = false;
+						}
+						value.forEach(function(value){
+							setting.element.querySelector("[value=" + value + "]").selected = true;
+						});
+					}
 					break;
 
 				default:
@@ -322,7 +346,7 @@ var GM_config = function(){
 			} else if (s.type == "select") {
 				s.element = element(
 					"select",
-					{class: "form-control", multiple: !!s.mutiple},
+					{class: "form-control", multiple: !!s.multiple},
 					Object.keys(s.options).map(function(optKey){
 						return element(
 							"option",
