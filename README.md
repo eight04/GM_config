@@ -24,45 +24,131 @@ Features
 
 Demo
 ----
-Checkout the [demo page][3].
 
-[3]: https://rawgit.com/eight04/GM_config/master/demo/demo.html
+* [demo](https://rawgit.com/eight04/GM_config/master/demo/demo.html)
+* [demo2](https://rawgit.com/eight04/GM_config/master/demo/demo2.html) - use `GM_init.setup()`.
 
-Usage Examples
---------------
+API
+---
+
+### Methods
+
+#### GM_config.init(title, configDefinition)
+
+##### title
+
+The title of the config dialog.
+
+##### configDefinition
+
+The definition is a map object look like:
 ```
-GM_config.init(
-	"Title",
-	{
-		"optionName": {
-			"label": "An option",
-			"type": "checkbox",		// 'checkbox', 'number', 'text', 'textarea'
-			"default": true
-		},
-		"option2Name": {
-			"label": "Another option",
-			"type": "number",
-			"default": 100
-		}
-	}
-);
-
-GM_config.onclose = function(){
-	// callback function...
-};
-
-GM_config.open();	// Open config dialog
-
-GM_config.get();
-/*
-->
 {
-	optionName: true,
-	option2Name: 100
+	key: {
+		label: "the label of the input",
+		
+		// input type. could be text, number, checkbox, textarea, radio, or
+		// select.
+		type: "text",
+		
+		// could be String, Number, Boolean, or Array. See following example.
+		default: "default value"
+	}
 }
-*/
-
 ```
+Example:
+```
+{
+	text: {
+		label: "Text field",
+		type: "text",
+		default: "a string"
+	},
+	number: {
+		label: "Number field",
+		type: "number",
+		default: 12345
+	},
+	checkbox: {
+		label: "Checkbox field",
+		type: "checkbox",
+		default: true
+	},
+	textarea: {
+		label: "Textarea field",
+		type: "textarea",
+		default: "multi\nline"
+	},
+	radio: {
+		label: "Select your language",
+		type: "radio",
+		default: "en",
+		options: {
+			en: "English",
+			tw: "Traditional Chinese",
+			cn: "Simplified Chinese"
+		}
+	},
+	select: {
+		label: "Choose a color",
+		type: "select",
+		default: "orange",
+		options: {
+			red: "Red",
+			orange: "Orange",
+			yellow: "Yellow"
+		}
+	},
+	multipleSelect: {
+		label: "Multiple select",
+		type: "select",
+		default: ["n1", "n3"],
+		options: {
+			n1: "1",
+			n2: "2",
+			n3: "3"
+		},
+		multiple: true
+	}
+}
+```
+
+#### GM_config.open()
+
+Open config dialog.
+
+#### GM_config.get([key])
+
+If `key` is not setted, return a key-value map of the config.  
+If `key` is a string, return the config value of the key.  
+If `key` is an object, copy all properties from the config to the object.
+
+#### GM_config.setup(configDefinition, saveCallback)
+
+This is a helper function to do a simple setup.
+```
+function setup(options, saveCallback) {
+	GM_config.init(GM_info.script.name, options);
+	GM_config.onload = loadCallback;
+	GM_registerMenuCommand(GM_info.script.name + " - Configure", GM_config.open);
+	saveCallback();
+}
+```
+* Note that saveCallback will be called once during the setup.
+
+### Properties
+
+#### GM_config.onclose = function(saveFlag)
+
+Called when the dialog is closed.
+
+##### saveFlag
+
+`true` if the user pressed "Save" button.
+
+#### GM_config.onload = function
+
+Called when the config is saved.
 
 Build
 -----
