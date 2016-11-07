@@ -1,6 +1,6 @@
 {
   "name": "GM_config",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "devDependencies": {
     "less": "^2.7.1",
     "npm-build-tools": "^2.2.5",
