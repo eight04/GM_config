@@ -1,3 +1,5 @@
+/* exported GM_config */
+
 /*
 Copyright 2009+, GM_config Contributors (https://github.com/sizzlemctwizzle/GM_config)
 
