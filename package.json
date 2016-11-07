@@ -1,13 +1,16 @@
 {
   "name": "GM_config",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "devDependencies": {
-    "grunt": "^0.4.5",
-    "grunt-contrib-clean": "^0.6.0",
-    "grunt-contrib-concat": "^0.5.1",
-    "grunt-contrib-cssmin": "^0.10.0",
-    "grunt-contrib-less": "^1.0.0",
-    "grunt-contrib-watch": "^0.6.1",
-    "grunt-replace": "^0.8.0"
+    "less": "^2.7.1",
+    "npm-build-tools": "^2.2.5",
+    "sync-version": "^0.2.0"
+  },
+  "scripts": {
+    "test": "eslint **/*.js",
+    "preversion": "npm test",
+    "version": "sync-version src/GM_config.js bower.json && npm run build && git add .",
+    "postversion": "git push --follow-tags",
+    "build": "node build.js | n-pipe dist/GM_config.js"
   }
 }
