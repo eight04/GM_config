@@ -256,6 +256,9 @@ var GM_config = function(){
 
 		if (saveFlag) {
 			save();
+			if (GM_config.onload) {
+				GM_config.onload();
+			}
 		}
 
 		if (GM_config.onclose) {
@@ -507,6 +510,13 @@ var GM_config = function(){
 			return con;
 		}
 	}
+	
+	function setup(options, loadCallback) {
+		GM_config.init(GM_info.script.name, options);
+		GM_config.onload = loadCallback;
+		GM_registerMenuCommand(GM_info.script.name + " - Configure", GM_config.open);
+		loadCallback();
+	}
 
 	GM_config = {
 		init: function(title, settings) {
@@ -517,7 +527,8 @@ var GM_config = function(){
 		},
 		open: open,
 		close: close,
-		get: getConfigObj
+		get: getConfigObj,
+		setup: setup
 	};
 
 	return GM_config;
