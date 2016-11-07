@@ -7,7 +7,7 @@
     "sync-version": "^0.2.0"
   },
   "scripts": {
-    "test": "eslint **/*.js",
+    "test": "eslint --ignore-pattern dist **/*.js",
     "preversion": "npm test",
     "version": "sync-version src/GM_config.js bower.json && npm run build && git add .",
     "postversion": "git push --follow-tags",
