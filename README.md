@@ -173,6 +173,10 @@ LGPL version 3 or any later version; http://www.gnu.org/copyleft/lgpl.html
 
 Changelog
 ---------
+* 2.2.0 (Nov 7, 2016)
+	- Drop Grunt, use npm scripts.
+	- Add API reference in readme.
+	- Add `.onload` and `.setup`.
 * 2.1.0 (Aug 7, 2015)
 	- Support radio.
 	- Support select.
